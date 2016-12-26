@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1BD204941E11B4B900BF3701 /* PrettyTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD204921E11B4B900BF3701 /* PrettyTextField.h */; };
+		1BD204941E11B4B900BF3701 /* PrettyTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BD204921E11B4B900BF3701 /* PrettyTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BD204961E11B4E000BF3701 /* PrettyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD204951E11B4E000BF3701 /* PrettyTextField.swift */; };
 /* End PBXBuildFile section */
 
