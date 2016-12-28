@@ -58,11 +58,13 @@ import UIKit
     
     /// Placeholder position
     public override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return UIEdgeInsetsInsetRect(bounds, textInset)
+        let textRect = super.textRect(forBounds: bounds)
+        return UIEdgeInsetsInsetRect(textRect, textInset)
     }
     
     /// Text position
     public override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return UIEdgeInsetsInsetRect(bounds, textInset)
+        let editingRect = super.editingRect(forBounds: bounds)
+        return UIEdgeInsetsInsetRect(editingRect, textInset)
     }
 }
