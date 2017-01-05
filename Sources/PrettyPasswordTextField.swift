@@ -17,13 +17,39 @@ import UIKit
         }
     }
     
-    @IBInspectable public var showSecureTextIcon: UIImage? = nil {
-        didSet {
+    @IBInspectable public var showSecureTextIcon: UIImage? {
+        get {
+            let showSecureTextButtonImage = self.showSecureTextButtonImage ?? self.defaultShowSecureTextIcon
+            
+            if tintColorForSecureTextIcon != nil {
+                return showSecureTextButtonImage?.withRenderingMode(.alwaysTemplate)
+            }
+            
+            return showSecureTextButtonImage
+        }
+        set {
+            self.showSecureTextButtonImage = newValue
             updateSpySecureTextButton()
         }
     }
     
-    @IBInspectable public var hideSecureTextIcon: UIImage? = nil {
+    @IBInspectable public var hideSecureTextIcon: UIImage? {
+        get {
+            hideSecureTextButtonImage = self.hideSecureTextButtonImage ?? self.defaultHideSecureTextIcon
+            
+            if tintColorForSecureTextIcon != nil {
+                return hideSecureTextButtonImage?.withRenderingMode(.alwaysTemplate)
+            }
+            
+            return hideSecureTextButtonImage
+        }
+        set {
+            self.hideSecureTextButtonImage = newValue
+            updateSpySecureTextButton()
+        }
+    }
+    
+    @IBInspectable public var tintColorForSecureTextIcon: UIColor? = nil {
         didSet {
             updateSpySecureTextButton()
         }
@@ -36,19 +62,21 @@ import UIKit
     }
 
     // MARK: - Private Properties
-    private var spySecureTextButton: UIButton?
-    
-    // MARK: - Computed Properties
-    
-    private var defaultShowSecureTextIcon: UIImage? = {
+    private lazy var defaultShowSecureTextIcon: UIImage? = {
         let bundle = Bundle(for: PrettyPasswordTextField.self)
         return UIImage(named: "show-secure-text-icon", in: bundle, compatibleWith: nil)
     }()
     
-    private var defaultHideSecureTextIcon: UIImage? = {
+    private var showSecureTextButtonImage: UIImage?
+
+    private lazy var defaultHideSecureTextIcon: UIImage? = {
         let bundle = Bundle(for: PrettyPasswordTextField.self)
         return UIImage(named: "hide-secure-text-icon", in: bundle, compatibleWith: nil)
     }()
+
+    private var hideSecureTextButtonImage: UIImage?
+    
+    private var spySecureTextButton: UIButton?
     
     // MARK: - UIView
     override public func didMoveToSuperview() {
@@ -59,13 +87,9 @@ import UIKit
     
     // MARK: - Private Instance Methods
     private func updateSpySecureTextButton() {
-        guard spySecureText else {
+        guard spySecureText, let showSecureTextIcon = showSecureTextIcon, let hideSecureTextIcon = hideSecureTextIcon else {
             rightViewMode = .never
             rightView = nil
-            return
-        }
-        
-        guard let showSecureTextIcon = showSecureTextIcon ?? defaultShowSecureTextIcon, let hideSecureTextIcon = hideSecureTextIcon ?? defaultHideSecureTextIcon else {
             return
         }
         
@@ -79,6 +103,8 @@ import UIKit
             rightView = spySecureTextButton
         }
         
+        spySecureTextButton?.tintColor = tintColorForSecureTextIcon ?? self.tintColor
+    
         if isSecureTextEntry {
             spySecureTextButton?.setImage(showSecureTextIcon, for: .normal)
         } else {
