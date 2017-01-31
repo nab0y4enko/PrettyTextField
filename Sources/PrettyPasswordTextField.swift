@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable public final class PrettyPasswordTextField: PrettyTextField {
+@IBDesignable open class PrettyPasswordTextField: PrettyTextField {
 
     // MARK: - Public Properties
     @IBInspectable public var spySecureText: Bool = false {
@@ -79,7 +79,7 @@ import UIKit
     private var spySecureTextButton: UIButton?
     
     // MARK: - UIView
-    override public func didMoveToSuperview() {
+    override open func didMoveToSuperview() {
         super.didMoveToSuperview()
         
         updateSpySecureTextButton()
@@ -121,7 +121,7 @@ import UIKit
     }
     
     // MARK: - UITextField
-    public override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+    open override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         var rightViewRect = super.rightViewRect(forBounds: bounds)
         
         if spySecureTextButton != nil {
@@ -131,7 +131,7 @@ import UIKit
         return rightViewRect
     }
     
-    public override func textRect(forBounds bounds: CGRect) -> CGRect {
+    open override func textRect(forBounds bounds: CGRect) -> CGRect {
         var textRect = super.textRect(forBounds: bounds)
         
         if spySecureTextButton != nil {
@@ -141,7 +141,7 @@ import UIKit
         return textRect
     }
     
-    public override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    open override func editingRect(forBounds bounds: CGRect) -> CGRect {
         var editingRect = super.editingRect(forBounds: bounds)
         
         if spySecureTextButton != nil {

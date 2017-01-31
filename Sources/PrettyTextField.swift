@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable public class PrettyTextField: UITextField {
+@IBDesignable open class PrettyTextField: UITextField {
     
     // MARK: - Properties for Interface Builder
     @available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'textInset' instead.")
@@ -57,13 +57,13 @@ import UIKit
     // MARK: - UITextField
     
     /// Placeholder position
-    public override func textRect(forBounds bounds: CGRect) -> CGRect {
+    open override func textRect(forBounds bounds: CGRect) -> CGRect {
         let textRect = super.textRect(forBounds: bounds)
         return UIEdgeInsetsInsetRect(textRect, textInset)
     }
     
     /// Text position
-    public override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    open override func editingRect(forBounds bounds: CGRect) -> CGRect {
         let editingRect = super.editingRect(forBounds: bounds)
         return UIEdgeInsetsInsetRect(editingRect, textInset)
     }
