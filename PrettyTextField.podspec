@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "PrettyTextField"
-    s.version      = "0.0.3"
+    s.version      = "0.0.4"
     s.summary      = "A custom TextField with a changable padding for the text."
 
     s.description = <<-DESC
